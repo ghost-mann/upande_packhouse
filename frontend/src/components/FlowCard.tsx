@@ -10,7 +10,7 @@ export default function FlowCard({ a }: { a: KpiAggregates }) {
       ? { cls: 'bg-accent-orange/15 text-accent-orange', Icon: ArrowUpRight, txt: `Packing ahead ${Math.abs(gap)}%` }
       : gap < 0
         ? { cls: 'bg-accent-green/15 text-accent-green', Icon: ArrowDownRight, txt: `Issuing ahead ${Math.abs(gap)}%` }
-        : { cls: 'bg-white/[0.08] text-ink-soft', Icon: Minus, txt: 'Aligned' }
+        : { cls: 'bg-gray-100 text-ink-soft', Icon: Minus, txt: 'Aligned' }
 
   return (
     <div className="glass glass-sheen relative flex flex-col rounded-2.5xl p-5 animate-fade-up">
@@ -35,8 +35,8 @@ export default function FlowCard({ a }: { a: KpiAggregates }) {
           value={a.avgIssuing}
           label="Avg Issuing"
           detail={`${num(a.totalIssuedStems)} / ${num(a.totalPickStems)}`}
-          from="#5eb0f7"
-          to="#2490ef"
+          from="#6fa8f5"
+          to="#2f6fed"
         />
         <RadialGauge
           value={a.avgPacking}
@@ -49,8 +49,8 @@ export default function FlowCard({ a }: { a: KpiAggregates }) {
           value={a.fulfillment}
           label="Fulfillment"
           detail="packed / ordered"
-          from="#6ee79a"
-          to="#29cd42"
+          from="#6ee7a8"
+          to="#22a45d"
         />
       </div>
     </div>

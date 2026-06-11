@@ -6,7 +6,7 @@ export function LiveButton({ loading, onClick }: { loading?: boolean; onClick: (
   return (
     <button
       onClick={onClick}
-      className="glass-soft flex items-center gap-2 rounded-2xl px-3 py-1.5 text-[12px] font-semibold text-ink transition hover:bg-white/10"
+      className="glass-soft flex items-center gap-2 rounded-2xl px-3 py-1.5 text-[12px] font-semibold text-ink transition hover:bg-gray-100"
     >
       <span className="relative flex h-2 w-2">
         <span className="absolute inline-flex h-full w-full rounded-full bg-accent-green animate-pulse-dot" />
@@ -109,7 +109,7 @@ export function GlassSelect({
 export function SpinnerOverlay({ show }: { show: boolean }) {
   if (!show) return null
   return (
-    <div className="fixed inset-0 z-[120] grid place-items-center bg-white/[0.05] backdrop-blur-sm">
+    <div className="fixed inset-0 z-[120] grid place-items-center bg-gray-50 backdrop-blur-sm">
       <div className="h-10 w-10 animate-spin rounded-full border-[3px] border-accent-blue/30 border-t-accent-blue" />
     </div>
   )
@@ -122,7 +122,7 @@ export function Chip({ children, tone = 'gray' }: { children: ReactNode; tone?: 
 
 export type ChipTone = 'gray' | 'blue' | 'green' | 'orange' | 'purple' | 'red' | 'teal'
 const CHIP: Record<ChipTone, string> = {
-  gray: 'bg-white/[0.08] text-ink-soft',
+  gray: 'bg-gray-100 text-ink-soft',
   blue: 'bg-accent-blue/12 text-accent-blue',
   green: 'bg-accent-green/15 text-accent-green',
   orange: 'bg-accent-orange/15 text-accent-orange',

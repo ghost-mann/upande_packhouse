@@ -12,7 +12,7 @@ import { BarsH, BarsV, Donut, SensorLine, type Datum } from '../components/chart
 import { useColdRoom, type SensorSeries } from '../hooks/useColdRoom'
 import { num } from '../lib/format'
 
-const AGE_COLORS = ['#29cd42', '#7cda89', '#fc9c30', '#e63757']
+const AGE_COLORS = ['#22a45d', '#86efac', '#f59e0b', '#ef4444']
 
 function sensorStatus(s: SensorSeries | null, kind: 'temp' | 'hum') {
   const v = lastReading(s)
@@ -133,7 +133,7 @@ export default function ColdRoomPage() {
                 <SensorLine
                   labels={temp?.labels || []}
                   values={temp?.values || []}
-                  color="#2490ef"
+                  color="#2f6fed"
                   unit="°"
                   band={temp ? temp.thresholds : undefined}
                   domain={tempDomain}
@@ -145,7 +145,7 @@ export default function ColdRoomPage() {
             </div>
 
             <div className="grid gap-5 xl:grid-cols-2">
-              <Panel title="Stems by Variety (Top 15)"><BarsH data={varietyData} color="#2490ef" /></Panel>
+              <Panel title="Stems by Variety (Top 15)"><BarsH data={varietyData} color="#2f6fed" /></Panel>
               <Panel title="Stock Age Distribution"><BarsV data={ageData} /></Panel>
             </div>
             <div className="grid gap-5 xl:grid-cols-2">

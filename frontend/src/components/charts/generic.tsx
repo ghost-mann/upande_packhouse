@@ -7,14 +7,14 @@ import { compact } from '../../lib/format'
 
 export interface Datum { name: string; value: number; color?: string }
 
-const PALETTE = ['#2490ef', '#29cd42', '#fc9c30', '#7c5cfc', '#e63757', '#16c8c8', '#1a8a3a', '#9a5a00']
+const PALETTE = ['#2f6fed', '#22a45d', '#f59e0b', '#7c5cfc', '#ef4444', '#06b6d4', '#15803d', '#b45309']
 
 function shorten(s: string, n = 14) {
   return s.length > n ? `${s.slice(0, n - 1)}…` : s
 }
 
 // Horizontal bars (e.g. stems by variety).
-export function BarsH({ data, color = '#2490ef', height }: { data: Datum[]; color?: string; height?: number }) {
+export function BarsH({ data, color = '#2f6fed', height }: { data: Datum[]; color?: string; height?: number }) {
   if (!data.length) return <Empty h={height || 200} />
   const h = height || Math.max(160, data.length * 26)
   return (
@@ -43,7 +43,7 @@ export function BarsV({ data, color = '#7c5cfc', height = 230 }: { data: Datum[]
       <BarChart data={data} margin={{ top: 12, right: 8, bottom: 4, left: -8 }} barSize={26}>
         <CartesianGrid vertical={false} />
         <XAxis dataKey="name" tickFormatter={(v) => shorten(v, 10)} interval={0} tickLine={false} axisLine={false} tick={{ fontSize: 10.5, fill: '#475569', fontWeight: 600 }} />
-        <YAxis tickFormatter={compact} tickLine={false} axisLine={false} width={42} tick={{ fontSize: 10.5, fill: '#94a3b8' }} />
+        <YAxis tickFormatter={compact} tickLine={false} axisLine={false} width={42} tick={{ fontSize: 10.5, fill: '#9ca3af' }} />
         <Tooltip content={<ChartTooltip />} cursor={{ fill: 'rgba(15,23,42,0.04)' }} />
         <Bar dataKey="value" name="stems" radius={[8, 8, 2, 2]}>
           {data.map((d, i) => (
@@ -111,8 +111,8 @@ export function SensorLine({
         </defs>
         <CartesianGrid vertical={false} />
         {band && <ReferenceArea y1={band.min} y2={band.max} fill={color} fillOpacity={0.06} stroke="none" />}
-        <XAxis dataKey="name" tickLine={false} axisLine={false} minTickGap={28} tick={{ fontSize: 10, fill: '#94a3b8' }} />
-        <YAxis domain={domain || ['auto', 'auto']} tickLine={false} axisLine={false} width={40} tickFormatter={(v) => `${v}${unit}`} tick={{ fontSize: 10, fill: '#94a3b8' }} />
+        <XAxis dataKey="name" tickLine={false} axisLine={false} minTickGap={28} tick={{ fontSize: 10, fill: '#9ca3af' }} />
+        <YAxis domain={domain || ['auto', 'auto']} tickLine={false} axisLine={false} width={40} tickFormatter={(v) => `${v}${unit}`} tick={{ fontSize: 10, fill: '#9ca3af' }} />
         <Tooltip content={<ChartTooltip />} cursor={{ stroke: 'rgba(15,23,42,0.15)' }} />
         <Area type="monotone" dataKey="value" name="reading" stroke={color} strokeWidth={2} fill={`url(#${id})`} dot={false} activeDot={{ r: 4 }} />
       </AreaChart>

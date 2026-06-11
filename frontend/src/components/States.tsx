@@ -3,7 +3,7 @@ import { Inbox } from 'lucide-react'
 export function EmptyState({ message = 'No records found' }: { message?: string }) {
   return (
     <div className="flex flex-col items-center justify-center gap-2 py-12 text-ink-mute">
-      <span className="grid h-12 w-12 place-items-center rounded-2xl bg-white/[0.07]">
+      <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gray-50">
         <Inbox size={22} strokeWidth={1.8} />
       </span>
       <p className="text-[13px] font-medium">{message}</p>
@@ -13,8 +13,8 @@ export function EmptyState({ message = 'No records found' }: { message?: string 
 
 export function CardSkeleton() {
   return (
-    <div className="glass-soft relative h-48 overflow-hidden rounded-2xl">
-      <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+    <div className="relative h-48 overflow-hidden rounded-2xl border border-line bg-gray-100">
+      <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white to-transparent" />
     </div>
   )
 }

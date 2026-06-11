@@ -6,7 +6,7 @@ export default function BoxLabelCard({ box }: { box: BoxLabel }) {
   return (
     <div
       onClick={() => openDoc('Order Pick List', box.oplId)}
-      className="glass-soft glass-sheen relative cursor-pointer rounded-2xl p-4 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10 hover:shadow-glass"
+      className="glass-soft glass-sheen relative cursor-pointer rounded-2xl p-4 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 hover:shadow-glass"
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -30,7 +30,7 @@ export default function BoxLabelCard({ box }: { box: BoxLabel }) {
 
 function Row({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-center justify-between border-b border-white/10 py-1.5 last:border-0">
+    <div className="flex items-center justify-between border-b border-line py-1.5 last:border-0">
       <dt className="text-ink-soft">{label}</dt>
       <dd className="truncate pl-3 font-semibold text-ink">{value}</dd>
     </div>

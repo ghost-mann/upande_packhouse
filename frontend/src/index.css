@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html,
@@ -14,33 +16,27 @@ body,
 
 body {
   margin: 0;
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  color: #eef2f8;
-  /* Deep, near-black canvas with cool liquid light pooling at the edges. */
-  background-color: #060912;
-  background-image:
-    radial-gradient(1200px 760px at 6% -10%, rgba(58, 160, 255, 0.20), transparent 60%),
-    radial-gradient(1000px 680px at 102% 4%, rgba(155, 123, 255, 0.18), transparent 55%),
-    radial-gradient(900px 620px at 48% 120%, rgba(43, 217, 217, 0.12), transparent 55%),
-    linear-gradient(180deg, #070a14 0%, #05070e 100%);
-  background-attachment: fixed;
+  color: #171717;
+  background-color: #f6f7f9;
 }
 
 @layer components {
-  /* Core liquid-glass panel: low-opacity light fill over dark + blur + bright top edge. */
+  /* Flat, professional surfaces (Frappe-CRM style): white card, hairline border, soft shadow. */
   .glass {
-    @apply border border-white/10 bg-white/[0.055] backdrop-blur-2xl shadow-glass;
+    @apply border border-line bg-white shadow-glass;
   }
   .glass-soft {
-    @apply border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl shadow-glass-sm;
+    @apply border border-line bg-white shadow-glass-sm;
   }
   .glass-strong {
-    @apply border border-white/15 bg-white/[0.09] backdrop-blur-2xl shadow-glass-lg;
+    @apply border border-line bg-white shadow-glass-lg;
   }
+  /* Segmented control track. */
   .glass-segment {
-    @apply inline-flex rounded-2xl border border-white/[0.08] bg-white/[0.04] p-1 backdrop-blur-md shadow-glass-sm;
+    @apply inline-flex rounded-xl border border-line bg-[#f3f3f4] p-0.5;
   }
 }
 
@@ -48,18 +44,9 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-  /* The meniscus: a bright liquid highlight curving along the top-left edge of glass. */
+  /* sheen is a no-op in the flat theme (kept so existing markup is valid) */
   .glass-sheen::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(140deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.04) 30%, rgba(255, 255, 255, 0) 55%);
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
+    content: none;
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -73,17 +60,13 @@ body {
   }
 }
 
-/* Recharts — tuned for the dark canvas. */
+/* Recharts — clean light styling. */
 .recharts-surface:focus {
   outline: none;
 }
 .recharts-cartesian-grid line {
-  stroke: rgba(255, 255, 255, 0.06);
+  stroke: #f0f0f0;
 }
 .recharts-default-tooltip {
-  border-radius: 14px !important;
-}
-/* date input picker indicator visible on dark */
-input[type='date']::-webkit-calendar-picker-indicator {
-  filter: invert(0.7);
+  border-radius: 12px !important;
 }

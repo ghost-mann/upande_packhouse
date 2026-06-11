@@ -79,7 +79,7 @@ function build(stock: StockItem[], orders: OrderItem[]) {
 }
 
 function varCls(v: number) {
-  if (v === 0) return 'bg-white/[0.06] text-ink-mute'
+  if (v === 0) return 'bg-gray-50 text-ink-mute'
   if (v > 0) return 'bg-accent-green/12 text-accent-green'
   if (v >= -500) return 'bg-accent-orange/12 text-accent-orange'
   return 'bg-accent-red/12 text-accent-red'
@@ -154,7 +154,7 @@ export default function StockVisibilityPage() {
         <div>
           <div className="mb-2 flex items-center gap-3 px-1">
             <h2 className="text-[13px] font-bold text-ink">Variety Stock vs Orders — by Farm &amp; Length</h2>
-            <span className="rounded-full bg-white/[0.08] px-2.5 py-0.5 text-[11px] font-bold text-ink-soft tnum">{visible.length} varieties</span>
+            <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-[11px] font-bold text-ink-soft tnum">{visible.length} varieties</span>
             <div className="ml-auto flex items-center gap-3 text-[11px] font-medium text-ink-soft">
               <Legend cls="bg-accent-green/40" label="Surplus" />
               <Legend cls="bg-accent-orange/40" label="Tight" />
@@ -208,7 +208,7 @@ export default function StockVisibilityPage() {
 function FragmentRows({ r, lengths, open, onToggle }: { r: VarietyRow; lengths: string[]; open: boolean; onToggle: () => void }) {
   return (
     <>
-      <tr onClick={onToggle} className="cursor-pointer border-t border-white/10 font-semibold transition-colors hover:bg-white/[0.06]">
+      <tr onClick={onToggle} className="cursor-pointer border-t border-line font-semibold transition-colors hover:bg-gray-50">
         <td className="whitespace-nowrap px-3 py-2">
           <span className="inline-flex items-center gap-1">
             <ChevronRight size={13} className={['text-ink-mute transition', open ? 'rotate-90' : ''].join(' ')} />
@@ -227,7 +227,7 @@ function FragmentRows({ r, lengths, open, onToggle }: { r: VarietyRow; lengths: 
         <td className={['px-2 py-2 text-right font-bold tnum', varCls(r.variance)].join(' ')}>{fmtVar(r.variance)}</td>
       </tr>
       {open && r.farms.map((fr) => (
-        <tr key={fr.farm} className="bg-white/[0.05] text-ink-soft transition-colors hover:bg-white/[0.05]">
+        <tr key={fr.farm} className="bg-gray-50 text-ink-soft transition-colors hover:bg-gray-50">
           <td className="px-3 py-1.5"></td>
           <td className="whitespace-nowrap px-3 py-1.5 text-[12px]">{fr.farm}</td>
           {lengths.flatMap((l) => [
@@ -257,7 +257,7 @@ function Cells({ stock, ord, hasData }: { stock: number; ord: number; hasData: b
 }
 
 function SubTh({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return <th className={['border-b border-white/12 px-2 py-1.5 text-right text-[10px] font-bold uppercase', className].join(' ')}>{children}</th>
+  return <th className={['border-b border-line px-2 py-1.5 text-right text-[10px] font-bold uppercase', className].join(' ')}>{children}</th>
 }
 
 function Legend({ cls, label }: { cls: string; label: string }) {

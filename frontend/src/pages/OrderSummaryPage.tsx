@@ -214,11 +214,11 @@ function StatusPill({ label, count, active, tone, onClick }: { label: string; co
       onClick={onClick}
       className={[
         'flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-[12px] font-semibold transition',
-        active ? 'bg-gradient-to-br from-accent-blue to-accent-purple text-white shadow-glow' : 'bg-white/[0.06] text-ink-soft hover:bg-white/10',
+        active ? 'bg-accent-blue text-white shadow-sm' : 'bg-gray-50 text-ink-soft hover:bg-gray-100',
       ].join(' ')}
     >
       {label}
-      <span className={['rounded-full px-1.5 text-[10px] tnum', active ? 'bg-white/[0.05]' : 'bg-white/10'].join(' ')}>{count}</span>
+      <span className={['rounded-full px-1.5 text-[10px] tnum', active ? 'bg-gray-50' : 'bg-gray-100'].join(' ')}>{count}</span>
       {tone && !active && <span className={['h-1.5 w-1.5 rounded-full', toneDot(tone)].join(' ')} />}
     </button>
   )

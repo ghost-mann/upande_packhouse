@@ -32,7 +32,7 @@ export default function ColdPressureCard({ title, incoming, onShelf, allocated, 
         <span>0</span>
         <span>{capacity > 0 ? `Capacity: ${num(capacity)}` : `Total: ${num(allSegments)}`}</span>
       </div>
-      <div className="relative h-3 w-full overflow-hidden rounded-full bg-white/[0.08]">
+      <div className="relative h-3 w-full overflow-hidden rounded-full bg-gray-100">
         <div className="flex h-full">
           <Seg w={pctIn} cls="bg-accent-orange" title={`Received (not shelved): ${num(incoming)}`} />
           <Seg w={pctUn} cls="bg-accent-blue" title={`On shelf: ${num(unallocatedShelf)}`} />

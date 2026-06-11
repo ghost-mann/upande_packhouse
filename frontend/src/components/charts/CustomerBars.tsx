@@ -17,7 +17,7 @@ export default function CustomerBars({ data }: { data: CustomerDatum[] }) {
         <defs>
           <linearGradient id="custg" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#7c5cfc" />
-            <stop offset="100%" stopColor="#2490ef" stopOpacity={0.75} />
+            <stop offset="100%" stopColor="#2f6fed" stopOpacity={0.75} />
           </linearGradient>
         </defs>
         <CartesianGrid vertical={false} />
@@ -29,7 +29,7 @@ export default function CustomerBars({ data }: { data: CustomerDatum[] }) {
           interval={0}
           tick={{ fontSize: 10.5, fill: '#475569', fontWeight: 600 }}
         />
-        <YAxis tickFormatter={compact} tickLine={false} axisLine={false} width={42} tick={{ fontSize: 10.5, fill: '#94a3b8' }} />
+        <YAxis tickFormatter={compact} tickLine={false} axisLine={false} width={42} tick={{ fontSize: 10.5, fill: '#9ca3af' }} />
         <Tooltip content={<ChartTooltip />} cursor={{ fill: 'rgba(15,23,42,0.04)' }} />
         <Bar dataKey="stems" name="stems" fill="url(#custg)" radius={[8, 8, 2, 2]} />
       </BarChart>

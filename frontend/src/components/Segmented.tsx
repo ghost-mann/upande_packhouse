@@ -23,7 +23,7 @@ export default function Segmented<T extends string>({ options, value, onChange, 
             className={[
               'relative rounded-xl font-medium transition-all duration-200',
               pad,
-              active ? 'bg-gradient-to-br from-accent-blue to-accent-purple text-white shadow-glow' : 'text-ink-soft hover:text-ink',
+              active ? 'bg-accent-blue text-white shadow-sm' : 'text-ink-soft hover:text-ink',
             ].join(' ')}
           >
             {o.label}

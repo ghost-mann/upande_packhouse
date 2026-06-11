@@ -10,8 +10,8 @@ const STAGE_TONE: Record<StageKey, { cls: string; txt: string }> = {
   packed: { cls: 'bg-accent-teal/15 text-accent-teal', txt: 'Packed' },
   labeled: { cls: 'bg-accent-orange/15 text-accent-orange', txt: 'Labeled' },
   loaded: { cls: 'bg-amber-500/15 text-amber-600', txt: 'Loaded' },
-  dispatched: { cls: 'bg-white/[0.08] text-ink-soft', txt: 'Dispatched' },
-  draft: { cls: 'bg-white/[0.08] text-ink-mute', txt: 'Draft' },
+  dispatched: { cls: 'bg-gray-100 text-ink-soft', txt: 'Dispatched' },
+  draft: { cls: 'bg-gray-100 text-ink-mute', txt: 'Draft' },
 }
 
 const STRIPE: Record<StageKey, string> = {
@@ -32,7 +32,7 @@ function Bar({ label, pct, color }: { label: string; pct: number; color: string 
         <span className="text-ink-soft">{label}</span>
         <span className="text-ink tnum">{pct}%</span>
       </div>
-      <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
+      <div className="h-1.5 overflow-hidden rounded-full bg-gray-100">
         <div
           className={['h-full rounded-full bg-gradient-to-r transition-[width] duration-700', color].join(' ')}
           style={{ width: `${Math.min(100, pct)}%` }}
@@ -52,7 +52,7 @@ export default function OplCard({ opl, onVarieties }: { opl: Opl; onVarieties: (
   return (
     <div
       onClick={() => openDoc('Order Pick List', opl.oplId)}
-      className="glass-soft glass-sheen group relative flex cursor-pointer gap-3 overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10 hover:shadow-glass"
+      className="glass-soft glass-sheen group relative flex cursor-pointer gap-3 overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 hover:shadow-glass"
     >
       <span className={['w-1 shrink-0 rounded-full bg-gradient-to-b', STRIPE[opl.stageKey]].join(' ')} />
       <div className="min-w-0 flex-1">
@@ -64,7 +64,7 @@ export default function OplCard({ opl, onVarieties }: { opl: Opl; onVarieties: (
             </div>
             <div className="mt-1 flex items-center gap-1.5">
               <span className="text-[11px] font-medium text-accent-blue">{opl.oplId}</span>
-              <span className="rounded-md bg-white/[0.08] px-1.5 py-0.5 text-[10px] font-semibold text-ink-soft">
+              <span className="rounded-md bg-gray-100 px-1.5 py-0.5 text-[10px] font-semibold text-ink-soft">
                 {opl.team}
               </span>
             </div>
@@ -92,7 +92,7 @@ export default function OplCard({ opl, onVarieties }: { opl: Opl; onVarieties: (
                     e.stopPropagation()
                     onVarieties(opl)
                   }}
-                  className="rounded-md bg-white/[0.08] px-1.5 py-0.5 text-[10.5px] font-semibold text-ink-soft transition hover:bg-white/10"
+                  className="rounded-md bg-gray-100 px-1.5 py-0.5 text-[10.5px] font-semibold text-ink-soft transition hover:bg-gray-100"
                 >
                   +{extra} more
                 </button>
@@ -140,7 +140,7 @@ export default function OplCard({ opl, onVarieties }: { opl: Opl; onVarieties: (
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl bg-white/[0.06] px-2 py-1.5 text-center">
+    <div className="rounded-xl bg-gray-50 px-2 py-1.5 text-center">
       <div className="text-[9.5px] font-semibold uppercase tracking-wide text-ink-mute">{label}</div>
       <div className="mt-0.5 text-[13px] font-bold text-ink tnum">{value}</div>
     </div>

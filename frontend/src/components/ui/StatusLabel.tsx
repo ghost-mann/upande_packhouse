@@ -6,7 +6,7 @@ const TONE: Record<Tone, string> = {
   danger: 'bg-accent-red/12 text-accent-red',
   info: 'bg-accent-purple/12 text-accent-purple',
   primary: 'bg-accent-blue/12 text-accent-blue',
-  default: 'bg-white/[0.08] text-ink-soft',
+  default: 'bg-gray-100 text-ink-soft',
 }
 
 export default function StatusLabel({ children, tone = 'default' }: { children: React.ReactNode; tone?: Tone }) {

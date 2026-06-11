@@ -26,7 +26,7 @@ export default function TeamDropdown({ value, onChange }: Props) {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="glass-soft flex items-center gap-2 rounded-2xl px-3.5 py-1.5 text-[13px] font-medium text-ink transition hover:bg-white/10"
+        className="glass-soft flex items-center gap-2 rounded-2xl px-3.5 py-1.5 text-[13px] font-medium text-ink transition hover:bg-gray-100"
       >
         <Users size={14} className="text-ink-mute" />
         {label}
@@ -45,7 +45,7 @@ export default function TeamDropdown({ value, onChange }: Props) {
                 }}
                 className={[
                   'flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-[13px] transition',
-                  active ? 'bg-accent-blue/15 font-semibold text-accent-blue' : 'text-ink-soft hover:bg-white/[0.08]',
+                  active ? 'bg-accent-blue/15 font-semibold text-accent-blue' : 'text-ink-soft hover:bg-gray-100',
                 ].join(' ')}
               >
                 {t === 'all' ? 'All Teams' : t}

@@ -4,41 +4,35 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: [
-          '-apple-system',
-          'BlinkMacSystemFont',
-          'SF Pro Display',
-          'Inter',
-          'Segoe UI',
-          'Roboto',
-          'sans-serif',
-        ],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       colors: {
-        // Foreground scale — light, for a dark canvas.
+        // Neutral foreground scale (Frappe CRM greys).
         ink: {
-          DEFAULT: '#eef2f8',
-          soft: '#aeb9cc',
-          mute: '#6b7689',
+          DEFAULT: '#171717',
+          soft: '#525252',
+          mute: '#999999',
         },
+        line: '#ededed', // hairline borders (gray-200)
+        canvas: '#f6f7f9', // page background
         accent: {
-          blue: '#3aa0ff',
-          green: '#3ddc6a',
-          red: '#ff5277',
-          orange: '#ffab3d',
-          purple: '#9b7bff',
-          teal: '#2bd9d9',
+          blue: '#2f6fed',
+          green: '#22a45d',
+          red: '#ef4444',
+          orange: '#f59e0b',
+          purple: '#7c5cfc',
+          teal: '#06b6d4',
         },
       },
       borderRadius: {
-        '2.5xl': '1.25rem',
-        '4xl': '2rem',
+        '2.5xl': '0.875rem',
+        '4xl': '1.25rem',
       },
       boxShadow: {
-        glass: '0 10px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255,255,255,0.14)',
-        'glass-sm': '0 4px 18px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.10)',
-        'glass-lg': '0 30px 80px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255,255,255,0.18)',
-        glow: '0 0 0 1px rgba(58,160,255,0.40), 0 10px 30px rgba(58,160,255,0.30)',
+        glass: '0 1px 2px rgba(17,17,17,0.04), 0 1px 3px rgba(17,17,17,0.06)',
+        'glass-sm': '0 1px 2px rgba(17,17,17,0.05)',
+        'glass-lg': '0 8px 24px rgba(17,17,17,0.10), 0 2px 6px rgba(17,17,17,0.06)',
+        glow: '0 1px 2px rgba(47,111,237,0.20), 0 0 0 1px rgba(47,111,237,0.10)',
       },
       backdropBlur: {
         xs: '2px',

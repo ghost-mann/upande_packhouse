@@ -40,7 +40,7 @@ export default class ErrorBoundary extends Component<Props, State> {
             <p className="max-w-md text-[12px] text-ink-mute">{this.state.error.message}</p>
             <button
               onClick={() => this.setState({ error: null })}
-              className="mt-1 rounded-2xl bg-gradient-to-r from-accent-blue to-accent-purple px-4 py-1.5 text-[12px] font-semibold text-white transition hover:opacity-90"
+              className="mt-1 rounded-2xl bg-accent-blue px-4 py-1.5 text-[12px] font-semibold text-white transition hover:opacity-90"
             >
               Try again
             </button>

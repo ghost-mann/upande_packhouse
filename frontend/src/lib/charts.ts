@@ -8,13 +8,13 @@ export interface StageDatum {
 }
 
 const STAGE_META: Record<StageKey, { label: string; color: string; order: number }> = {
-  ready: { label: 'Ready', color: '#29cd42', order: 0 },
-  issued: { label: 'Issued', color: '#2490ef', order: 1 },
+  ready: { label: 'Ready', color: '#22a45d', order: 0 },
+  issued: { label: 'Issued', color: '#2f6fed', order: 1 },
   packing: { label: 'Packing', color: '#7c5cfc', order: 2 },
-  packed: { label: 'Packed', color: '#16c8c8', order: 3 },
-  labeled: { label: 'Labeled', color: '#fc9c30', order: 4 },
+  packed: { label: 'Packed', color: '#06b6d4', order: 3 },
+  labeled: { label: 'Labeled', color: '#f59e0b', order: 4 },
   loaded: { label: 'Loaded', color: '#f59e0b', order: 5 },
-  dispatched: { label: 'Dispatched', color: '#94a3b8', order: 6 },
+  dispatched: { label: 'Dispatched', color: '#9ca3af', order: 6 },
   draft: { label: 'Draft', color: '#cbd5e1', order: 7 },
 }
 
@@ -78,8 +78,8 @@ export function topCustomers(opls: Opl[], limit = 6): CustomerDatum[] {
 // Issuing-vs-packing funnel rendered as a radial gauge trio.
 export function flowGauges(d: Dashboard) {
   return [
-    { name: 'Issuing', value: d.aggregates.avgIssuing, fill: '#2490ef' },
+    { name: 'Issuing', value: d.aggregates.avgIssuing, fill: '#2f6fed' },
     { name: 'Packing', value: d.aggregates.avgPacking, fill: '#7c5cfc' },
-    { name: 'Fulfillment', value: d.aggregates.fulfillment, fill: '#29cd42' },
+    { name: 'Fulfillment', value: d.aggregates.fulfillment, fill: '#22a45d' },
   ]
 }

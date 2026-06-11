@@ -198,7 +198,7 @@ export default function AllocationPlanningPage() {
             <GlassSelect value={f.confirmedBy} onChange={(v) => setF((s) => ({ ...s, confirmedBy: v }))} placeholder="All" options={[...lists.farms.map((x) => ({ value: x, label: x })), { value: 'Unconfirmed', label: 'Unconfirmed' }, { value: 'Partial', label: 'Partial' }]} />
           </div>
           {activeFilters.length > 0 && (
-            <button onClick={clearAll} className="glass-soft flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-[12px] font-semibold text-ink-soft transition hover:bg-white/10">
+            <button onClick={clearAll} className="glass-soft flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-[12px] font-semibold text-ink-soft transition hover:bg-gray-100">
               <X size={13} /> Clear
             </button>
           )}
@@ -244,7 +244,7 @@ export default function AllocationPlanningPage() {
                   const pct = r.fulfillment_percentage || 0
                   const farmBad = r.farm_name === 'No Stock Available' || r.farm_name === 'Unknown'
                   return (
-                    <tr key={i} className={['transition-colors hover:bg-white/[0.06]', isNew ? 'border-t border-white/10' : ''].join(' ')}>
+                    <tr key={i} className={['transition-colors hover:bg-gray-50', isNew ? 'border-t border-line' : ''].join(' ')}>
                       <Td className="font-bold">{isNew ? r.customer : ''}</Td>
                       <Td className="text-ink-soft">{isNew ? r.transaction_date : ''}</Td>
                       <Td className="text-ink-soft">{isNew ? r.delivery_date : ''}</Td>
@@ -291,7 +291,7 @@ function ConfirmedCell({ row, total, ordered, pctC, location, onRemove }: { row:
         }) : <span className="text-[11px] text-ink-mute">None</span>}
       </div>
       <div className="mt-1.5 flex items-center gap-2">
-        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
+        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-gray-100">
           <div className={['h-full rounded-full bg-gradient-to-r transition-[width]', fill].join(' ')} style={{ width: `${pctC}%` }} />
         </div>
         <span className="text-[10px] font-semibold text-ink-soft tnum">{total.toLocaleString()}/{ordered.toLocaleString()}</span>
@@ -314,7 +314,7 @@ function ActionCell({ remaining, mine, ordered, total, location, value, onInput,
           type="number" min={0} max={max} title={`Max ${max}`}
           value={value ?? String(def)}
           onChange={(e) => onInput(e.target.value)}
-          className="w-16 rounded-lg bg-white/[0.08] px-2 py-1 text-[12px] text-ink outline-none ring-1 ring-white/60 focus:ring-accent-blue/50 tnum"
+          className="w-16 rounded-lg border border-line bg-white px-2 py-1 text-[12px] text-ink outline-none focus:border-accent-blue/60 focus:ring-2 focus:ring-accent-blue/20 tnum"
         />
         <button onClick={onConfirm} className="rounded-lg bg-accent-green/90 px-2.5 py-1 text-[11px] font-bold text-white transition hover:bg-accent-green">{mine > 0 ? 'Update' : 'Confirm'}</button>
         {mine > 0 && <button onClick={onRemove} className="grid h-6 w-6 place-items-center rounded-lg bg-accent-red/12 text-accent-red transition hover:bg-accent-red/20"><X size={13} /></button>}

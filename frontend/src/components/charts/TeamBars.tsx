@@ -12,7 +12,7 @@ import ChartTooltip from './ChartTooltip'
 import { compact } from '../../lib/format'
 import type { TeamDatum } from '../../lib/charts'
 
-const COLORS = ['#2490ef', '#7c5cfc', '#16c8c8', '#29cd42', '#fc9c30', '#e63757', '#94a3b8']
+const COLORS = ['#2f6fed', '#7c5cfc', '#06b6d4', '#22a45d', '#f59e0b', '#ef4444', '#9ca3af']
 
 export default function TeamBars({ data }: { data: TeamDatum[] }) {
   if (!data.length) return <div className="grid h-[180px] place-items-center text-[12px] text-ink-mute">No team data</div>
