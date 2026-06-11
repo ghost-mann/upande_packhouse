@@ -15,16 +15,21 @@ import { num } from '../lib/format'
 const AGE_COLORS = ['#29cd42', '#7cda89', '#fc9c30', '#e63757']
 
 function sensorStatus(s: SensorSeries | null, kind: 'temp' | 'hum') {
+  const v = lastReading(s)
+  if (v == null || !s) return null
+  const { min, max } = s.thresholds
+  if (v >= min && v <= max) return { txt: 'Normal', cls: 'text-accent-green' }
+  if (kind === 'temp') return v > max ? { txt: 'Too High', cls: 'text-accent-red' } : { txt: 'Too Low', cls: 'text-accent-orange' }
+  return { txt: 'Out of Range', cls: 'text-accent-orange' }
+}
+function lastReading(s: SensorSeries | null): number | null {
   if (!s || !s.values?.length) return null
   const v = s.values[s.values.length - 1]
-  const { min, max } = s.thresholds
-  if (v >= min && v <= max) return { txt: 'Normal', cls: 'text-[#1a8a3a]' }
-  if (kind === 'temp') return v > max ? { txt: 'Too High', cls: 'text-accent-red' } : { txt: 'Too Low', cls: 'text-[#9a5a00]' }
-  return { txt: 'Out of Range', cls: 'text-[#9a5a00]' }
+  return typeof v === 'number' && Number.isFinite(v) ? v : null
 }
 function latest(s: SensorSeries | null, unit: string) {
-  if (!s || !s.values?.length) return '--'
-  return s.values[s.values.length - 1].toFixed(1) + unit
+  const v = lastReading(s)
+  return v == null ? '--' : v.toFixed(1) + unit
 }
 const toData = (rec: Record<string, number> | undefined): Datum[] =>
   Object.entries(rec || {}).map(([name, value]) => ({ name, value }))
@@ -64,6 +69,12 @@ export default function ColdRoomPage() {
   }, [stock, shelfSearch])
 
   const ts = sensorStatus(temp, 'temp'), hs = sensorStatus(hum, 'hum')
+
+  // Safe y-domain for the temperature chart — only when both bounds are finite.
+  const tempDomain: [number, number] | undefined =
+    temp && Number.isFinite(temp.min_value) && Number.isFinite(temp.max_value)
+      ? [Math.min(temp.thresholds.min - 1, temp.min_value - 0.5), Math.max(temp.thresholds.max + 1, temp.max_value + 0.5)]
+      : undefined
 
   return (
     <>
@@ -125,7 +136,7 @@ export default function ColdRoomPage() {
                   color="#2490ef"
                   unit="°"
                   band={temp ? temp.thresholds : undefined}
-                  domain={temp ? [Math.min(temp.thresholds.min - 1, temp.min_value - 0.5), Math.max(temp.thresholds.max + 1, temp.max_value + 0.5)] : undefined}
+                  domain={tempDomain}
                 />
               </Panel>
               <Panel title={`${hum?.sensorName || 'Cold Room'} — Humidity (24h)`}>

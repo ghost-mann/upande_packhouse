@@ -88,7 +88,7 @@ export default function BucketTrackerPage() {
             className="w-full bg-transparent text-[13px] text-ink outline-none placeholder:text-ink-mute"
           />
         </div>
-        <button onClick={() => track()} className="rounded-2xl bg-ink px-4 py-1.5 text-[13px] font-semibold text-white shadow-glass-sm transition hover:bg-ink/90">Track</button>
+        <button onClick={() => track()} className="rounded-2xl bg-gradient-to-r from-accent-blue to-accent-purple px-4 py-1.5 text-[13px] font-semibold text-white shadow-glass-sm transition hover:opacity-90">Track</button>
       </PageBar>
 
       <Main>
@@ -115,7 +115,7 @@ export default function BucketTrackerPage() {
                 {journeys.map((j) => {
                   const active = j.number === selected
                   return (
-                    <button key={j.number} onClick={() => setSelected(j.number)} className={['rounded-2xl px-3.5 py-2 text-left transition', active ? 'bg-ink text-white shadow-glass-sm' : 'glass-soft text-ink-soft hover:bg-white/70'].join(' ')}>
+                    <button key={j.number} onClick={() => setSelected(j.number)} className={['rounded-2xl px-3.5 py-2 text-left transition', active ? 'bg-gradient-to-br from-accent-blue to-accent-purple text-white shadow-glow' : 'glass-soft text-ink-soft hover:bg-white/10'].join(' ')}>
                       <div className="text-[12.5px] font-bold">Journey {j.number}</div>
                       <div className={['text-[10.5px]', active ? 'text-white/70' : 'text-ink-mute'].join(' ')}>{j.variety || '—'} · {fmtDate(j.startDate)}</div>
                     </button>
@@ -153,7 +153,7 @@ function Hint({ mode }: { mode: Mode }) {
   )
 }
 function Flow({ label, chain }: { label: string; chain: string }) {
-  return <div className="flex flex-wrap items-center gap-2"><span className="w-28 shrink-0 font-semibold text-ink">{label}</span><span className="rounded-lg bg-white/50 px-2.5 py-1 font-medium">{chain}</span></div>
+  return <div className="flex flex-wrap items-center gap-2"><span className="w-28 shrink-0 font-semibold text-ink">{label}</span><span className="rounded-lg bg-white/[0.07] px-2.5 py-1 font-medium">{chain}</span></div>
 }
 
 function BucketSummary({ id, journeys }: { id: string; journeys: Journey[] }) {
@@ -197,9 +197,9 @@ function JourneyPanel({ j }: { j: Journey }) {
         {stages.map((s) => {
           const done = stageDone(j, s)
           return (
-            <div key={s} className={['rounded-2xl border p-3 text-center transition', done ? 'border-accent-green/30 bg-accent-green/[0.06]' : 'border-white/50 bg-white/30'].join(' ')}>
+            <div key={s} className={['rounded-2xl border p-3 text-center transition', done ? 'border-accent-green/30 bg-accent-green/[0.06]' : 'border-white/10 bg-white/[0.05]'].join(' ')}>
               <div className="text-[12px] font-bold text-ink">{s}</div>
-              <div className={['mt-1 text-[10.5px] font-semibold', done ? 'text-[#1a8a3a]' : 'text-ink-mute'].join(' ')}>{done ? 'Done' : '--'}</div>
+              <div className={['mt-1 text-[10.5px] font-semibold', done ? 'text-accent-green' : 'text-ink-mute'].join(' ')}>{done ? 'Done' : '--'}</div>
             </div>
           )
         })}
@@ -247,10 +247,10 @@ function JourneyPanel({ j }: { j: Journey }) {
             {j.alloc.bucket_allocations.map((a, i) => {
               const share = j.alloc!.total_quantity ? Math.round((a.quantity_allocated / j.alloc!.total_quantity!) * 100) : 0
               return (
-                <button key={i} onClick={() => openDoc('Sales Order', a.sales_order)} className={['glass-soft glass-sheen relative rounded-2xl p-3.5 text-left transition hover:bg-white/70', a.cancelled ? 'opacity-60' : ''].join(' ')}>
+                <button key={i} onClick={() => openDoc('Sales Order', a.sales_order)} className={['glass-soft glass-sheen relative rounded-2xl p-3.5 text-left transition hover:bg-white/10', a.cancelled ? 'opacity-60' : ''].join(' ')}>
                   <div className="flex items-center justify-between"><span className="text-[12.5px] font-bold text-accent-blue">{a.sales_order}</span><StatusLabel tone={a.cancelled ? 'danger' : 'success'}>{a.cancelled ? 'Cancelled' : 'Active'}</StatusLabel></div>
                   <div className="mt-1 text-[12px] text-ink-soft">{a.quantity_allocated.toLocaleString()} stems allocated</div>
-                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-ink/10"><div className="h-full rounded-full bg-gradient-to-r from-accent-blue to-accent-purple" style={{ width: `${share}%` }} /></div>
+                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full bg-gradient-to-r from-accent-blue to-accent-purple" style={{ width: `${share}%` }} /></div>
                 </button>
               )
             })}
@@ -274,7 +274,7 @@ function OplCards({ rows }: { rows: OplRow[] }) {
           const pct = Number(r.opl_issuing_pct) || (r.custom_issued ? 100 : 0)
           const badge: { label: string; tone: Tone } = r.custom_issued ? { label: 'Issued', tone: 'success' } : pct > 0 ? { label: `${Math.round(pct)}% Issued`, tone: 'warning' } : { label: 'Pending', tone: 'default' }
           return (
-            <button key={r.parent} onClick={() => openDoc('Order Pick List', r.parent)} className="glass-soft glass-sheen relative rounded-2xl p-3.5 text-left transition hover:bg-white/70">
+            <button key={r.parent} onClick={() => openDoc('Order Pick List', r.parent)} className="glass-soft glass-sheen relative rounded-2xl p-3.5 text-left transition hover:bg-white/10">
               <div className="flex items-center justify-between gap-2"><span className="truncate text-[12.5px] font-bold text-ink">{r.opl_order_name || r.parent}</span><StatusLabel tone={badge.tone}>{badge.label}</StatusLabel></div>
               <div className="mt-1 text-[11.5px] text-ink-soft">{r.opl_customer || '—'}{r.opl_consignee ? ` · ${r.opl_consignee}` : ''}</div>
               <div className="mt-0.5 text-[11px] text-ink-mute">{r.opl_sales_order} · {r.opl_team}</div>
@@ -291,7 +291,7 @@ function OplCards({ rows }: { rows: OplRow[] }) {
   )
 }
 function Mini({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-lg bg-ink/[0.04] px-1.5 py-1"><div className="text-[9px] font-semibold uppercase text-ink-mute">{label}</div><div className="truncate text-[11px] font-bold text-ink">{value}</div></div>
+  return <div className="rounded-lg bg-white/[0.06] px-1.5 py-1"><div className="text-[9px] font-semibold uppercase text-ink-mute">{label}</div><div className="truncate text-[11px] font-bold text-ink">{value}</div></div>
 }
 
 function BunchPanel({ b, onTrackBucket }: { b: BunchResult; onTrackBucket: (id: string) => void }) {
@@ -325,7 +325,7 @@ function BunchPanel({ b, onTrackBucket }: { b: BunchResult; onTrackBucket: (id: 
             <div key={i} className="flex gap-3">
               <div className="flex flex-col items-center">
                 <span className={['grid h-8 w-8 place-items-center rounded-full text-[12px] font-bold text-white', s.tone].join(' ')}>{s.letter}</span>
-                {i < steps.length - 1 && <span className="mt-1 w-px flex-1 bg-white/60" />}
+                {i < steps.length - 1 && <span className="mt-1 w-px flex-1 bg-white/[0.08]" />}
               </div>
               <div className="glass-soft flex-1 rounded-2xl p-3">
                 <div className="flex items-center justify-between"><span className="text-[12.5px] font-bold text-ink">{s.title}</span>{s.date && <span className="text-[11px] text-ink-mute">{s.date}</span>}</div>
@@ -344,7 +344,7 @@ function BunchPanel({ b, onTrackBucket }: { b: BunchResult; onTrackBucket: (id: 
         <Section title="Linked Buckets">
           <div className="flex flex-wrap gap-2">
             {bucketIds.map((bid) => (
-              <button key={bid} onClick={() => onTrackBucket(bid)} className="glass-soft rounded-xl px-3 py-1.5 text-[12px] font-semibold text-accent-blue transition hover:bg-white/70">Track Bucket {bid}</button>
+              <button key={bid} onClick={() => onTrackBucket(bid)} className="glass-soft rounded-xl px-3 py-1.5 text-[12px] font-semibold text-accent-blue transition hover:bg-white/10">Track Bucket {bid}</button>
             ))}
           </div>
         </Section>
@@ -365,7 +365,7 @@ function DetailGrid({ items }: { items: [string, string | undefined][] }) {
   return (
     <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
       {items.filter(([, v]) => v != null && v !== '').map(([k, v]) => (
-        <div key={k} className="rounded-xl bg-white/40 px-3 py-2">
+        <div key={k} className="rounded-xl bg-white/[0.05] px-3 py-2">
           <div className="text-[9.5px] font-semibold uppercase tracking-wide text-ink-mute">{k}</div>
           <div className="truncate text-[12px] font-semibold text-ink">{v}</div>
         </div>

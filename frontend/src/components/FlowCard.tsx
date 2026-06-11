@@ -10,7 +10,7 @@ export default function FlowCard({ a }: { a: KpiAggregates }) {
       ? { cls: 'bg-accent-orange/15 text-accent-orange', Icon: ArrowUpRight, txt: `Packing ahead ${Math.abs(gap)}%` }
       : gap < 0
         ? { cls: 'bg-accent-green/15 text-accent-green', Icon: ArrowDownRight, txt: `Issuing ahead ${Math.abs(gap)}%` }
-        : { cls: 'bg-white/60 text-ink-soft', Icon: Minus, txt: 'Aligned' }
+        : { cls: 'bg-white/[0.08] text-ink-soft', Icon: Minus, txt: 'Aligned' }
 
   return (
     <div className="glass glass-sheen relative flex flex-col rounded-2.5xl p-5 animate-fade-up">

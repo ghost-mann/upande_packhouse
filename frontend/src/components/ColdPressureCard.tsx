@@ -19,7 +19,7 @@ export default function ColdPressureCard({ title, incoming, onShelf, allocated, 
   const pctIn = pct(incoming), pctUn = pct(unallocatedShelf), pctAl = pct(allocShow)
   const pctEmpty = Math.max(0, 100 - pctIn - pctUn - pctAl)
   const util = capacity > 0 ? Math.round((allSegments / capacity) * 100) : 0
-  const utilTone = util > 90 ? 'bg-accent-red/15 text-accent-red' : util > 70 ? 'bg-accent-orange/15 text-[#9a5a00]' : 'bg-accent-green/15 text-[#1a8a3a]'
+  const utilTone = util > 90 ? 'bg-accent-red/15 text-accent-red' : util > 70 ? 'bg-accent-orange/15 text-accent-orange' : 'bg-accent-green/15 text-accent-green'
   const capLine = capacity > 0 ? Math.min((capacity / maxVal) * 100, 100) : null
 
   return (
@@ -32,7 +32,7 @@ export default function ColdPressureCard({ title, incoming, onShelf, allocated, 
         <span>0</span>
         <span>{capacity > 0 ? `Capacity: ${num(capacity)}` : `Total: ${num(allSegments)}`}</span>
       </div>
-      <div className="relative h-3 w-full overflow-hidden rounded-full bg-ink/[0.06]">
+      <div className="relative h-3 w-full overflow-hidden rounded-full bg-white/[0.08]">
         <div className="flex h-full">
           <Seg w={pctIn} cls="bg-accent-orange" title={`Received (not shelved): ${num(incoming)}`} />
           <Seg w={pctUn} cls="bg-accent-blue" title={`On shelf: ${num(unallocatedShelf)}`} />

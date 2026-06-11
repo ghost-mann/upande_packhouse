@@ -198,7 +198,7 @@ export default function AllocationPlanningPage() {
             <GlassSelect value={f.confirmedBy} onChange={(v) => setF((s) => ({ ...s, confirmedBy: v }))} placeholder="All" options={[...lists.farms.map((x) => ({ value: x, label: x })), { value: 'Unconfirmed', label: 'Unconfirmed' }, { value: 'Partial', label: 'Partial' }]} />
           </div>
           {activeFilters.length > 0 && (
-            <button onClick={clearAll} className="glass-soft flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-[12px] font-semibold text-ink-soft transition hover:bg-white/70">
+            <button onClick={clearAll} className="glass-soft flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-[12px] font-semibold text-ink-soft transition hover:bg-white/10">
               <X size={13} /> Clear
             </button>
           )}
@@ -244,7 +244,7 @@ export default function AllocationPlanningPage() {
                   const pct = r.fulfillment_percentage || 0
                   const farmBad = r.farm_name === 'No Stock Available' || r.farm_name === 'Unknown'
                   return (
-                    <tr key={i} className={['transition-colors hover:bg-white/45', isNew ? 'border-t border-white/55' : ''].join(' ')}>
+                    <tr key={i} className={['transition-colors hover:bg-white/[0.06]', isNew ? 'border-t border-white/10' : ''].join(' ')}>
                       <Td className="font-bold">{isNew ? r.customer : ''}</Td>
                       <Td className="text-ink-soft">{isNew ? r.transaction_date : ''}</Td>
                       <Td className="text-ink-soft">{isNew ? r.delivery_date : ''}</Td>
@@ -255,13 +255,13 @@ export default function AllocationPlanningPage() {
                       <Td className="text-ink-soft">{isNew ? r.length : ''}</Td>
                       <Td className="text-right tnum">{isNew ? num(ordered) : ''}</Td>
                       <Td className="text-right tnum">{isNew ? num(r.boxes_ordered) : ''}</Td>
-                      <Td className={farmBad ? 'text-accent-red' : 'text-[#1a8a3a]'}>{r.farm_name || 'Unknown'}</Td>
+                      <Td className={farmBad ? 'text-accent-red' : 'text-accent-green'}>{r.farm_name || 'Unknown'}</Td>
                       <Td className="text-right tnum">{r.stock_total != null ? num(r.stock_total) : '--'}</Td>
                       <Td><StatusLabel tone={statusTone(r.stock_status)}>{r.stock_status || 'No Stock'}</StatusLabel></Td>
-                      <Td className={['text-right font-semibold tnum', pct >= 100 ? 'text-[#1a8a3a]' : pct >= 50 ? 'text-[#9a5a00]' : 'text-accent-red'].join(' ')}>{pct}%</Td>
+                      <Td className={['text-right font-semibold tnum', pct >= 100 ? 'text-accent-green' : pct >= 50 ? 'text-accent-orange' : 'text-accent-red'].join(' ')}>{pct}%</Td>
                       <Td>{isNew ? <ConfirmedCell row={r} total={tot} ordered={ordered} pctC={pctC} location={location} onRemove={doRemove} /> : ''}</Td>
                       <Td>{isNew ? <ActionCell remaining={remaining} mine={mine} ordered={ordered} total={tot} location={location} value={inputs[key]} onInput={(v) => setInputs((s) => ({ ...s, [key]: v }))} onConfirm={() => doConfirm(r)} onRemove={() => doRemove(r, location)} /> : ''}</Td>
-                      <Td className={['text-right font-semibold tnum', balance >= 0 ? 'text-[#1a8a3a]' : 'text-accent-red'].join(' ')}>{balance.toLocaleString()}</Td>
+                      <Td className={['text-right font-semibold tnum', balance >= 0 ? 'text-accent-green' : 'text-accent-red'].join(' ')}>{balance.toLocaleString()}</Td>
                     </tr>
                   )
                 })
@@ -283,7 +283,7 @@ function ConfirmedCell({ row, total, ordered, pctC, location, onRemove }: { row:
         {entries.length ? entries.map((e) => {
           const mine = e.farm === location
           return (
-            <span key={e.farm} className={['inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[10.5px] font-semibold', mine ? 'bg-accent-blue/15 text-accent-blue' : 'bg-accent-green/12 text-[#1a8a3a]'].join(' ')} title={`${e.farm}: ${e.stems} stems`}>
+            <span key={e.farm} className={['inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[10.5px] font-semibold', mine ? 'bg-accent-blue/15 text-accent-blue' : 'bg-accent-green/12 text-accent-green'].join(' ')} title={`${e.farm}: ${e.stems} stems`}>
               {e.farm}: {e.stems.toLocaleString()}
               {mine && <X size={11} className="cursor-pointer hover:opacity-70" onClick={() => onRemove(row, e.farm)} />}
             </span>
@@ -291,7 +291,7 @@ function ConfirmedCell({ row, total, ordered, pctC, location, onRemove }: { row:
         }) : <span className="text-[11px] text-ink-mute">None</span>}
       </div>
       <div className="mt-1.5 flex items-center gap-2">
-        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-ink/10">
+        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
           <div className={['h-full rounded-full bg-gradient-to-r transition-[width]', fill].join(' ')} style={{ width: `${pctC}%` }} />
         </div>
         <span className="text-[10px] font-semibold text-ink-soft tnum">{total.toLocaleString()}/{ordered.toLocaleString()}</span>
@@ -314,7 +314,7 @@ function ActionCell({ remaining, mine, ordered, total, location, value, onInput,
           type="number" min={0} max={max} title={`Max ${max}`}
           value={value ?? String(def)}
           onChange={(e) => onInput(e.target.value)}
-          className="w-16 rounded-lg bg-white/60 px-2 py-1 text-[12px] text-ink outline-none ring-1 ring-white/60 focus:ring-accent-blue/50 tnum"
+          className="w-16 rounded-lg bg-white/[0.08] px-2 py-1 text-[12px] text-ink outline-none ring-1 ring-white/60 focus:ring-accent-blue/50 tnum"
         />
         <button onClick={onConfirm} className="rounded-lg bg-accent-green/90 px-2.5 py-1 text-[11px] font-bold text-white transition hover:bg-accent-green">{mine > 0 ? 'Update' : 'Confirm'}</button>
         {mine > 0 && <button onClick={onRemove} className="grid h-6 w-6 place-items-center rounded-lg bg-accent-red/12 text-accent-red transition hover:bg-accent-red/20"><X size={13} /></button>}

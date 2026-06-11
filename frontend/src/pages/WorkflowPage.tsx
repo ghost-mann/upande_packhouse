@@ -85,7 +85,7 @@ export default function WorkflowPage() {
                 type="date"
                 value={deliveryDate}
                 onChange={(e) => setDeliveryDate(e.target.value)}
-                className="glass-soft rounded-lg px-2 py-0.5 text-[10px] text-ink outline-none [color-scheme:light]"
+                className="glass-soft rounded-lg px-2 py-0.5 text-[10px] text-ink outline-none [color-scheme:dark]"
               />
             }
           />

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 html,
@@ -17,30 +17,30 @@ body {
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  color: #0b1220;
-  /* Layered ambient backdrop — the light the glass refracts. */
-  background-color: #eef2f7;
+  color: #eef2f8;
+  /* Deep, near-black canvas with cool liquid light pooling at the edges. */
+  background-color: #060912;
   background-image:
-    radial-gradient(1100px 680px at 8% -8%, rgba(36, 144, 239, 0.16), transparent 60%),
-    radial-gradient(900px 620px at 100% 0%, rgba(124, 92, 252, 0.15), transparent 55%),
-    radial-gradient(820px 560px at 50% 118%, rgba(41, 205, 66, 0.12), transparent 55%);
+    radial-gradient(1200px 760px at 6% -10%, rgba(58, 160, 255, 0.20), transparent 60%),
+    radial-gradient(1000px 680px at 102% 4%, rgba(155, 123, 255, 0.18), transparent 55%),
+    radial-gradient(900px 620px at 48% 120%, rgba(43, 217, 217, 0.12), transparent 55%),
+    linear-gradient(180deg, #070a14 0%, #05070e 100%);
   background-attachment: fixed;
 }
 
 @layer components {
-  /* The core iOS-style frosted panel. */
+  /* Core liquid-glass panel: low-opacity light fill over dark + blur + bright top edge. */
   .glass {
-    @apply bg-white/55 backdrop-blur-2xl border border-white/60 shadow-glass;
+    @apply border border-white/10 bg-white/[0.055] backdrop-blur-2xl shadow-glass;
   }
   .glass-soft {
-    @apply bg-white/45 backdrop-blur-xl border border-white/55 shadow-glass-sm;
+    @apply border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl shadow-glass-sm;
   }
   .glass-strong {
-    @apply bg-white/70 backdrop-blur-2xl border border-white/70 shadow-glass-lg;
+    @apply border border-white/15 bg-white/[0.09] backdrop-blur-2xl shadow-glass-lg;
   }
-  /* Segmented control / pill containers. */
   .glass-segment {
-    @apply bg-white/40 backdrop-blur-md border border-white/50 rounded-2xl p-1 inline-flex shadow-glass-sm;
+    @apply inline-flex rounded-2xl border border-white/[0.08] bg-white/[0.04] p-1 backdrop-blur-md shadow-glass-sm;
   }
 }
 
@@ -48,14 +48,14 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-  /* Hairline top sheen used on cards for the "edge of glass" highlight. */
+  /* The meniscus: a bright liquid highlight curving along the top-left edge of glass. */
   .glass-sheen::before {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(140deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 38%);
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.04) 30%, rgba(255, 255, 255, 0) 55%);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -73,13 +73,17 @@ body {
   }
 }
 
-/* Recharts polish: kill the default focus outline and soften the grid. */
+/* Recharts — tuned for the dark canvas. */
 .recharts-surface:focus {
   outline: none;
 }
 .recharts-cartesian-grid line {
-  stroke: rgba(15, 23, 42, 0.06);
+  stroke: rgba(255, 255, 255, 0.06);
 }
 .recharts-default-tooltip {
   border-radius: 14px !important;
+}
+/* date input picker indicator visible on dark */
+input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
 }

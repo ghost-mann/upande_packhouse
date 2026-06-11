@@ -27,7 +27,7 @@ const RANGE_OPTS: { value: DateRange; label: string }[] = [
 ]
 
 const dateInput =
-  'glass-soft rounded-xl px-2.5 py-1.5 text-[12px] text-ink outline-none transition focus:ring-2 focus:ring-accent-blue/40 [color-scheme:light]'
+  'glass-soft rounded-xl px-2.5 py-1.5 text-[12px] text-ink outline-none transition focus:ring-2 focus:ring-accent-blue/40 [color-scheme:dark]'
 
 export default function PageHeader(p: Props) {
   return (
@@ -65,7 +65,7 @@ export default function PageHeader(p: Props) {
           />
           <button
             onClick={p.onRefresh}
-            className="glass-soft flex items-center gap-2 rounded-2xl px-3 py-1.5 text-[12px] font-semibold text-ink transition hover:bg-white/70"
+            className="glass-soft flex items-center gap-2 rounded-2xl px-3 py-1.5 text-[12px] font-semibold text-ink transition hover:bg-white/10"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full bg-accent-green animate-pulse-dot" />

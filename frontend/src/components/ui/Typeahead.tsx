@@ -48,7 +48,7 @@ export default function Typeahead({ value, onChange, options, label, placeholder
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Type to filter…"
-            className="mb-1 w-full rounded-lg bg-white/60 px-2.5 py-1.5 text-[12.5px] outline-none placeholder:text-ink-mute"
+            className="mb-1 w-full rounded-lg bg-white/[0.08] px-2.5 py-1.5 text-[12.5px] outline-none placeholder:text-ink-mute"
           />
           <div className="max-h-56 overflow-y-auto no-scrollbar">
             {filtered.length ? (
@@ -56,7 +56,7 @@ export default function Typeahead({ value, onChange, options, label, placeholder
                 <button
                   key={o}
                   onClick={() => { onChange(o); setOpen(false) }}
-                  className={['block w-full truncate rounded-lg px-2.5 py-1.5 text-left text-[12.5px] transition', o === value ? 'bg-accent-blue/15 font-semibold text-accent-blue' : 'text-ink-soft hover:bg-white/60'].join(' ')}
+                  className={['block w-full truncate rounded-lg px-2.5 py-1.5 text-left text-[12.5px] transition', o === value ? 'bg-accent-blue/15 font-semibold text-accent-blue' : 'text-ink-soft hover:bg-white/[0.08]'].join(' ')}
                 >
                   {o}
                 </button>

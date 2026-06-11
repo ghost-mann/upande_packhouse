@@ -15,18 +15,19 @@ export default {
         ],
       },
       colors: {
+        // Foreground scale — light, for a dark canvas.
         ink: {
-          DEFAULT: '#0b1220',
-          soft: '#475569',
-          mute: '#94a3b8',
+          DEFAULT: '#eef2f8',
+          soft: '#aeb9cc',
+          mute: '#6b7689',
         },
         accent: {
-          blue: '#2490ef',
-          green: '#29cd42',
-          red: '#e63757',
-          orange: '#fc9c30',
-          purple: '#7c5cfc',
-          teal: '#16c8c8',
+          blue: '#3aa0ff',
+          green: '#3ddc6a',
+          red: '#ff5277',
+          orange: '#ffab3d',
+          purple: '#9b7bff',
+          teal: '#2bd9d9',
         },
       },
       borderRadius: {
@@ -34,10 +35,10 @@ export default {
         '4xl': '2rem',
       },
       boxShadow: {
-        glass: '0 8px 32px rgba(15, 23, 42, 0.10), inset 0 1px 0 rgba(255,255,255,0.55)',
-        'glass-sm': '0 2px 12px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255,255,255,0.5)',
-        'glass-lg': '0 20px 60px rgba(15, 23, 42, 0.16), inset 0 1px 0 rgba(255,255,255,0.6)',
-        glow: '0 0 0 1px rgba(36,144,239,0.25), 0 8px 24px rgba(36,144,239,0.18)',
+        glass: '0 10px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255,255,255,0.14)',
+        'glass-sm': '0 4px 18px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.10)',
+        'glass-lg': '0 30px 80px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255,255,255,0.18)',
+        glow: '0 0 0 1px rgba(58,160,255,0.40), 0 10px 30px rgba(58,160,255,0.30)',
       },
       backdropBlur: {
         xs: '2px',

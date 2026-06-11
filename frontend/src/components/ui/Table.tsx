@@ -16,7 +16,7 @@ export function TableWrap({ children, minWidth, maxH = 'calc(100vh - 280px)' }: 
 
 export function THead({ children }: { children: ReactNode }) {
   return (
-    <thead className="sticky top-0 z-10 bg-white/70 backdrop-blur-xl [&_th]:border-b [&_th]:border-white/60">
+    <thead className="sticky top-0 z-10 bg-white/10 backdrop-blur-xl [&_th]:border-b [&_th]:border-white/12">
       {children}
     </thead>
   )
@@ -61,8 +61,8 @@ export function Tr({
       className={[
         'transition-colors',
         onClick ? 'cursor-pointer' : '',
-        'hover:bg-white/45',
-        topBorder ? 'border-t border-white/55' : '',
+        'hover:bg-white/[0.06]',
+        topBorder ? 'border-t border-white/10' : '',
         className,
       ].join(' ')}
     >
