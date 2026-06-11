@@ -51,7 +51,7 @@ export default function OplCard({ opl, onVarieties }: { opl: Opl; onVarieties: (
 
   return (
     <div
-      onClick={() => openDoc(opl.oplId)}
+      onClick={() => openDoc('Order Pick List', opl.oplId)}
       className="glass-soft glass-sheen group relative flex cursor-pointer gap-3 overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/70 hover:shadow-glass"
     >
       <span className={['w-1 shrink-0 rounded-full bg-gradient-to-b', STRIPE[opl.stageKey]].join(' ')} />

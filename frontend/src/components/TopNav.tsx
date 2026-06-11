@@ -1,14 +1,19 @@
+import { NavLink } from 'react-router-dom'
 import { Boxes } from 'lucide-react'
 
-const LINKS = [
-  { label: 'Home', href: '/app/packhouse-%26-sales' },
-  { label: 'Workflow', href: '/packhouse-dashboard', active: true },
-  { label: 'Allocation Planning', href: '/sales-allocation-planning' },
-  { label: 'Bucket Journey', href: '/bucket-tracker' },
-  { label: 'Cold Room', href: '/cold-room' },
-  { label: 'Stock Visibility', href: '/stock-visibility' },
-  { label: 'Order Summary', href: '/order-summary' },
+// Internal SPA routes (client-side nav) + the external desk Home link.
+const HOME = { label: 'Home', href: '/app/packhouse-%26-sales' }
+const TABS = [
+  { label: 'Workflow', to: '/packhouse-dashboard' },
+  { label: 'Allocation Planning', to: '/sales-allocation-planning' },
+  { label: 'Bucket Journey', to: '/bucket-tracker' },
+  { label: 'Cold Room', to: '/cold-room' },
+  { label: 'Stock Visibility', to: '/stock-visibility' },
+  { label: 'Order Summary', to: '/order-summary' },
 ]
+
+const base =
+  'shrink-0 rounded-xl px-3 py-1.5 text-[13px] font-medium transition-all duration-200'
 
 export default function TopNav() {
   return (
@@ -23,19 +28,21 @@ export default function TopNav() {
           </span>
           <span className="ml-1 hidden h-5 w-px bg-white/60 sm:block" />
         </div>
-        {LINKS.map((l) => (
-          <a
-            key={l.label}
-            href={l.href}
-            className={[
-              'shrink-0 rounded-xl px-3 py-1.5 text-[13px] font-medium transition-all duration-200',
-              l.active
-                ? 'bg-ink text-white shadow-glass-sm'
-                : 'text-ink-soft hover:bg-white/55 hover:text-ink',
-            ].join(' ')}
+        <a href={HOME.href} className={[base, 'text-ink-soft hover:bg-white/55 hover:text-ink'].join(' ')}>
+          {HOME.label}
+        </a>
+        {TABS.map((t) => (
+          <NavLink
+            key={t.to}
+            to={t.to}
+            className={({ isActive }) =>
+              [base, isActive ? 'bg-ink text-white shadow-glass-sm' : 'text-ink-soft hover:bg-white/55 hover:text-ink'].join(
+                ' ',
+              )
+            }
           >
-            {l.label}
-          </a>
+            {t.label}
+          </NavLink>
         ))}
       </div>
     </nav>

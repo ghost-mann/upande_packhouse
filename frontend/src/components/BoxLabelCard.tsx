@@ -5,7 +5,7 @@ import type { BoxLabel } from '../lib/types'
 export default function BoxLabelCard({ box }: { box: BoxLabel }) {
   return (
     <div
-      onClick={() => openDoc(box.oplId)}
+      onClick={() => openDoc('Order Pick List', box.oplId)}
       className="glass-soft glass-sheen relative cursor-pointer rounded-2xl p-4 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/70 hover:shadow-glass"
     >
       <div className="flex items-center justify-between">
