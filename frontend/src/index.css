@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #0b1220;
+  /* Layered ambient backdrop — the light the glass refracts. */
+  background-color: #eef2f7;
+  background-image:
+    radial-gradient(1100px 680px at 8% -8%, rgba(36, 144, 239, 0.16), transparent 60%),
+    radial-gradient(900px 620px at 100% 0%, rgba(124, 92, 252, 0.15), transparent 55%),
+    radial-gradient(820px 560px at 50% 118%, rgba(41, 205, 66, 0.12), transparent 55%);
+  background-attachment: fixed;
+}
+
+@layer components {
+  /* The core iOS-style frosted panel. */
+  .glass {
+    @apply bg-white/55 backdrop-blur-2xl border border-white/60 shadow-glass;
+  }
+  .glass-soft {
+    @apply bg-white/45 backdrop-blur-xl border border-white/55 shadow-glass-sm;
+  }
+  .glass-strong {
+    @apply bg-white/70 backdrop-blur-2xl border border-white/70 shadow-glass-lg;
+  }
+  /* Segmented control / pill containers. */
+  .glass-segment {
+    @apply bg-white/40 backdrop-blur-md border border-white/50 rounded-2xl p-1 inline-flex shadow-glass-sm;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  /* Hairline top sheen used on cards for the "edge of glass" highlight. */
+  .glass-sheen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 38%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Recharts polish: kill the default focus outline and soften the grid. */
+.recharts-surface:focus {
+  outline: none;
+}
+.recharts-cartesian-grid line {
+  stroke: rgba(15, 23, 42, 0.06);
+}
+.recharts-default-tooltip {
+  border-radius: 14px !important;
+}

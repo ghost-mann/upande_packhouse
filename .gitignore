@@ -1,0 +1,6 @@
+.DS_Store
+node_modules
+__pycache__
+*.pyc
+upande_packhouse/public/frontend
+frontend/dist
