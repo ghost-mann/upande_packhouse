@@ -1,30 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: light;
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 8%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 12%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 240 5% 96%;
+    --accent-foreground: 240 6% 12%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 221 83% 53%;
+    --radius: 0.7rem;
+  }
 }
 
-html,
-body,
-#root {
-  height: 100%;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply text-foreground;
+    margin: 0;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: hsl(240 6% 96%);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
 }
 
-body {
-  margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  color: #171717;
-  background-color: #f6f7f9;
-}
-
+/* ── Legacy flat-glass classes (still used by not-yet-migrated pages) ── */
 @layer components {
-  /* Flat, professional surfaces (Frappe-CRM style): white card, hairline border, soft shadow. */
   .glass {
     @apply border border-line bg-white shadow-glass;
   }
@@ -34,17 +59,12 @@ body {
   .glass-strong {
     @apply border border-line bg-white shadow-glass-lg;
   }
-  /* Segmented control track. */
   .glass-segment {
     @apply inline-flex rounded-xl border border-line bg-[#f3f3f4] p-0.5;
   }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  /* sheen is a no-op in the flat theme (kept so existing markup is valid) */
   .glass-sheen::before {
     content: none;
   }
@@ -60,13 +80,9 @@ body {
   }
 }
 
-/* Recharts — clean light styling. */
 .recharts-surface:focus {
   outline: none;
 }
 .recharts-cartesian-grid line {
-  stroke: #f0f0f0;
-}
-.recharts-default-tooltip {
-  border-radius: 12px !important;
+  stroke: hsl(240 6% 92%);
 }
